@@ -1,0 +1,52 @@
+<iscomment> <div class="col-6 col-sm-4">
+<isinclude url="${URLUtils.url('Tile-Show', 'pid', pdict.productId)}" />
+</div> </iscomment>
+<isscript>
+    var URLUtils = require('dw.web.URLUtils');
+</isscript>
+ <iscomment> <div class="card">
+    <div class="card-header clearfix">
+        <h2 class="pull-left profile-header"> Its Your Favourite</h2>
+        
+         <iscomment> <a href="${URLUtils.url('Favourite-Remove') class="remove-fav" }">Remove</a> </iscomment>  
+
+<iscomment> check </iscomment>
+<isif condition="${pdict.account.favourite}">
+    <div class="card">
+        <div class="card-header clearfix">
+            <h2 class="pull-left"> Your Favourite List</h2>
+<a href="${URLUtils.url('Favourite-Remove')}" class="remove-fav" >Remove</a>        </div>
+
+    <div class="card-body card-info-group">
+        <div class="row">
+            <div class="col-4 hidden-xs-down">
+<isset name="favImage" value="${pdict.account.favourite}" scope="page"/>
+<img class="img-fluid" src="${favImage.ImageModel.url}" alt="${favImage].alt}" title="${favImage.title}"></div>        </div>
+    </div>
+    
+        <div class="card-footer">
+        <div class="row">
+            <div class="col-7 dashboard-order-card-footer-columns card-info-group">
+                            <a href="${URLUtils.url('Product-Show','pid',favImage.productDetails.ID)}" class="dashboard-order-card-footer-value">${favImage.productDetails.name}</a>
+                <p class="dashboard-order-card-footer-value">
+                </p>
+            </div>
+            <div class="col-5 dashboard-order-card-footer-columns card-info-group">
+                <p>${Resource.msg('label.orderhistory.ordertotal','account',null)} </p>
+                <p class="dashboard-order-card-footer-value">
+                    ${favImage.productDetails.priceModel.maxPrice}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+</isif>
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+<isdecorate template="Training/demo">
+<div class="container">
+<h1>Assignment of 5/7/2022</h1>
+</div>
+<iscomment> <isdecorate template="common/layout/page">
+      
+<isinclude template="reporting/reportingUrls" />
+
+ </isdecorate> </iscomment>
+ <div class="window">
+       
+        <h2> Customer Information</h2>
+        <isif condition="${!empty(pdict.customer) && !empty(pdict.customer.profile)}">
+            ${pdict.customer.profile.customerNo}
+            ${pdict.customer.profile.firstName}
+        <iselse/>
+            Enter a valid customer id
+        </isif>
+        <iscomment> ${pdict.customer.profile.customerNo}
+        ${pdict.customer.profile.firstName} </iscomment>
+
+    
+
+
+    </div>
+
+    
+<style>
+h1{
+    color:blue;
+}
+.container h1 {
+  border: 5px outset red;
+  background-color: lightblue;    
+  text-align: center;
+}
+</style>
+ </isdecorate>

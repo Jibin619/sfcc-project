@@ -1,0 +1,30 @@
+
+<isscript>
+    var URLUtils = require('dw/web/URLUtils');
+</isscript>
+
+<div class="product-tile">
+    <!-- dwMarker="product" dwContentID="${product.uuid}" -->
+    <isinclude template="product/components/productTileImage" />
+    <div class="tile-body">
+        <isif condition="${pdict.display.swatches !== false}">
+            <isinclude template="product/components/productTileSwatch" />
+        </isif>
+
+        <isinclude template="product/components/productTileName" />
+
+        <isset name="price" value="${product.price}" scope="page" />
+        <isif condition="${product.productType === 'set'}">
+            <isinclude template="product/components/pricing/setPrice" />
+        <iselse>
+            <isinclude template="product/components/pricing/main" />
+        </isif>
+
+        <isif condition="${pdict.display.ratings !== false}">
+            <isinclude template="product/productTileFooter" />
+        </isif>
+        <a href="${URLUtils.url('Favourite-Submit', 'pid', product.id)}" class="add-fav"><h6>Add to Favorites</h6></a>
+        
+    </div>
+    <!-- END_dwmarker -->
+</div> 

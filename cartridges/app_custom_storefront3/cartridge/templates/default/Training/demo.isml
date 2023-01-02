@@ -1,0 +1,41 @@
+<iscomment> ${pdict.siteCategory.printCategory} </iscomment>
+
+
+    <iscomment> <isloop items="${pdict.printCategory}" var="category" status="loopstatus"> </iscomment>
+    <iscomment> <isset name="productCount" value="${0}" scope="page"/> </iscomment>
+       <iscomment> ${category.displayName} <br> </iscomment>
+        
+            <iscomment> <isloop items="${category.subCategories}" var="subCategory" status="loopstatus"> </iscomment>
+                <iscomment> - ${subCategory.displayName}<br> </iscomment>
+                 <iscomment> (${subCategory.products.length})<br> </iscomment>
+                <iscomment> <isset name="productCount" value="${productCount + subCategory.products.length}" scope="page"/> </iscomment>
+                <iscomment> <isif condition="${subCategory.products}">
+                    <isloop items="${subCategory.products}" var="product" status="loopstatus">
+                        -- ${product.ID}<br>
+                        <isif condition="${loopstatus.count > 4}"> <isbreak/></isif>
+                    </isloop>       
+                </isif>
+                <isloop>
+            </isloop> </iscomment>
+
+                    
+        
+        <iscomment> total product count : ${productCount} <br>
+    </isloop> </iscomment>
+    <isloop items="${pdict.printCategory}"  var="category" status="loopstatus">
+${category.displayName}   
+
+<isloop items="${category.subCategories}" var="subCategory" status="loopstatus">
+    <isif condition="${subCategory.products}">
+
+    <isloop items="${subCategory.products}" var="product" status="loopstatus">
+        ${product.name}<br>
+        <isif condition="${loopstatus.count > 4}"> <isbreak/></isif>
+    </isloop>
+        
+    
+        
+    </isif>
+</isloop>
+ </isloop>
+

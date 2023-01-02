@@ -1,0 +1,46 @@
+<isif condition="${pdict.productDetails}">
+  <isset name="product" value="${pdict.productDetails}" scope="page" />
+  Product ID : ${product.ID}<br>
+  Product Name : ${product.name}<br>
+  Product description: ${product.shortDescription}
+  Product prices:${product.priceModel}
+
+  <isinclude url="${URLUtils.url('Product-Show', 'pid', product.ID)}" sf-toolkit="on" />
+
+  <iselseif condition="${pdict.categoryDetails}">
+    <isset name="category" value="${pdict.categoryDetails}" scope="page" />
+    Category ID : ${category.ID}<br>
+    Category Name : ${category.displayName}<br>
+     Category description : ${category.pageDescription}<br>
+        <isif condition="${category.products}">
+         products :<br>
+          <isloop items="${category.products}" var="product" status="loopstatus"> 
+        Product Id :  ${product.ID}<br>
+        Product Name :${product.name}<br>
+        <isif condition="${product.shortDescription}">
+          Product Description :${product.shortDescription}<br>
+        <iselse/>
+           Product Description:  no description
+        </isif>
+       <br>
+       <br>
+          </isloop>
+          
+           
+          <isinclude url="${URLUtils.url('Search-Show', 'cgid', category.ID)}" sf-toolkit="on" />
+          <iselse/>
+          No products
+        </isif>
+  </iselseif>
+  <iselse/>
+      
+  Id does not have product and Category
+</isif>
+
+
+
+
+
+<iscomment>
+  <isinclude url="${URLUtils.url('Categories-getCategories')}" />
+</iscomment>
